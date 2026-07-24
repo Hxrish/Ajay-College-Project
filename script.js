@@ -1,16 +1,18 @@
 /**
  * Ajay Studio - Core Interactive Behaviors
- * Handles Gallery Filtering, Immersive Lightbox, Scroll Reveals, Nav Toggle & Forms
+ * Handles Navigation, Gallery Filtering, Lightbox, Scroll Spy & Form Submissions
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
-    // 1. RESPONSIVE NAVIGATION MOBILE MENU
+    // 1. RESPONSIVE NAVIGATION & SCROLL SPY
     // ==========================================
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
-    const header = document.querySelector('.main-header');
+    const header = document.getElementById('mainHeader');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
@@ -18,13 +20,42 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.toggle('menu-open');
         });
 
-        // Close menu when clicking links
-        const navLinks = navMenu.querySelectorAll('.nav-link');
+        // Close menu on link click
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('open');
                 header.classList.remove('menu-open');
             });
+        });
+    }
+
+    // Active Nav Highlight on Scroll (Scroll Spy)
+    const highlightNavOnScroll = () => {
+        const scrollY = window.scrollY;
+
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 120;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    };
+
+    window.addEventListener('scroll', highlightNavOnScroll, { passive: true });
+
+    // Back to Top Button
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
@@ -39,17 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Reveal only once
+                    observer.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
         });
 
         revealElements.forEach(el => revealObserver.observe(el));
     } else {
-        // Fallback for browsers without IntersectionObserver support
         revealElements.forEach(el => el.classList.add('visible'));
     }
 
@@ -62,30 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // Remove active class from other buttons
             filterButtons.forEach(b => b.classList.remove('active'));
             e.currentTarget.classList.add('active');
 
             const filterValue = e.currentTarget.getAttribute('data-filter');
 
             galleryItems.forEach(item => {
-                // Determine if item matches selection
                 const matches = filterValue === 'all' || item.classList.contains(filterValue);
                 
                 if (matches) {
                     item.classList.remove('hide');
-                    // Add subtle delay to visual entrance
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'scale(1)';
-                    }, 50);
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
                 } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.95)';
-                    // Delay adding the hide class to allow opacity transition
-                    setTimeout(() => {
-                        item.classList.add('hide');
-                    }, 400);
+                    item.classList.add('hide');
                 }
             });
         });
@@ -117,18 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentItemIndex = 0;
     let visibleGalleryItems = [];
 
-    // Open Lightbox
     const openLightbox = (item) => {
-        // Collect currently visible items for sliding behavior
-        visibleGalleryItems = Array.from(galleryItems).filter(item => !item.classList.contains('hide'));
+        visibleGalleryItems = Array.from(galleryItems).filter(i => !i.classList.contains('hide'));
         currentItemIndex = visibleGalleryItems.indexOf(item);
 
         updateLightboxData(item);
         lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Stop body scrolling
+        document.body.style.overflow = 'hidden';
     };
 
-    // Update Lightbox contents based on item node
     const updateLightboxData = (item) => {
         const src = item.getAttribute('data-src');
         const title = item.getAttribute('data-title');
@@ -141,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const location = item.getAttribute('data-location');
         const desc = item.getAttribute('data-desc');
 
-        // Apply with fade transition effect
         lightboxImg.style.opacity = '0';
         
         setTimeout(() => {
@@ -162,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
         exifIso.textContent = iso;
     };
 
-    // Next / Previous logic
     const showNext = () => {
         if (visibleGalleryItems.length <= 1) return;
         currentItemIndex = (currentItemIndex + 1) % visibleGalleryItems.length;
@@ -177,47 +192,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeLightbox = () => {
         lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        document.body.style.overflow = 'auto';
     };
 
-    // Click listeners on items
     galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            openLightbox(item);
-        });
+        item.addEventListener('click', () => openLightbox(item));
     });
 
-    // Close and Nav handlers
     if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
     if (lightboxNext) lightboxNext.addEventListener('click', showNext);
     if (lightboxPrev) lightboxPrev.addEventListener('click', showPrev);
 
-    // Click outside image modal to close
     if (lightbox) {
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
+            if (e.target === lightbox) closeLightbox();
         });
     }
 
-    // Keyboard controls
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
-        
-        if (e.key === 'Escape') {
-            closeLightbox();
-        } else if (e.key === 'ArrowRight') {
-            showNext();
-        } else if (e.key === 'ArrowLeft') {
-            showPrev();
-        }
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowRight') showNext();
+        else if (e.key === 'ArrowLeft') showPrev();
     });
 
 
     // ==========================================
-    // 5. INTERACTIVE BOOKING & INQUIRY FORM
+    // 5. SERVICE BUTTON QUICK SELECT & FORM SUBMIT
     // ==========================================
+    const projectTypeSelect = document.getElementById('projectType');
+    const serviceButtons = document.querySelectorAll('.service-btn');
+
+    serviceButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const selectValue = btn.getAttribute('data-select');
+            if (selectValue && projectTypeSelect) {
+                projectTypeSelect.value = selectValue;
+            }
+        });
+    });
+
     const inquiryForm = document.getElementById('inquiryForm');
     const formSuccess = document.getElementById('formSuccess');
     const resetFormBtn = document.getElementById('resetFormBtn');
@@ -226,18 +240,16 @@ document.addEventListener('DOMContentLoaded', () => {
         inquiryForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Add loading state
             inquiryForm.classList.add('submitting');
             const submitBtn = document.getElementById('submitBtn');
             if (submitBtn) submitBtn.disabled = true;
 
-            // Simulate form submission to backend
             setTimeout(() => {
                 inquiryForm.classList.remove('submitting');
                 formSuccess.classList.add('active');
                 inquiryForm.reset();
                 if (submitBtn) submitBtn.disabled = false;
-            }, 1800);
+            }, 1200);
         });
 
         if (resetFormBtn) {
