@@ -1,6 +1,7 @@
 /**
  * Ajay Studio - Core Interactive Behaviors
  * Handles Navigation, Gallery Filtering, Lightbox, Scroll Spy & Form Submissions
+ * Zero-dependency robust Vanilla JS script
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
-    if (menuToggle && navMenu) {
+    if (menuToggle && navMenu && header) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('open');
             header.classList.toggle('menu-open');
@@ -28,6 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Smooth scroll for internal hash links with header offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#' || !targetId) return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
     // Active Nav Highlight on Scroll (Scroll Spy)
     const highlightNavOnScroll = () => {
@@ -75,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, {
             threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px'
+            rootMargin: '0px 0px -30px 0px'
         });
 
         revealElements.forEach(el => revealObserver.observe(el));
@@ -140,58 +162,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const openLightbox = (item) => {
         visibleGalleryItems = Array.from(galleryItems).filter(i => !i.classList.contains('hide'));
         currentItemIndex = visibleGalleryItems.indexOf(item);
+        if (currentItemIndex < 0) currentItemIndex = 0;
 
-        updateLightboxData(item);
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        updateLightboxData(visibleGalleryItems[currentItemIndex]);
+        if (lightbox) {
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     };
 
     const updateLightboxData = (item) => {
-        const src = item.getAttribute('data-src');
-        const title = item.getAttribute('data-title');
-        const category = item.getAttribute('data-category');
-        const camera = item.getAttribute('data-camera');
-        const lens = item.getAttribute('data-lens');
-        const aperture = item.getAttribute('data-aperture');
-        const shutter = item.getAttribute('data-shutter');
-        const iso = item.getAttribute('data-iso');
-        const location = item.getAttribute('data-location');
-        const desc = item.getAttribute('data-desc');
+        if (!item) return;
 
-        lightboxImg.style.opacity = '0';
-        
-        setTimeout(() => {
-            lightboxImg.src = src;
-            lightboxImg.alt = title;
-            lightboxImg.style.opacity = '1';
-        }, 150);
+        const src = item.getAttribute('data-src') || '';
+        const title = item.getAttribute('data-title') || 'Untitled';
+        const category = item.getAttribute('data-category') || 'Photography';
+        const camera = item.getAttribute('data-camera') || 'N/A';
+        const lens = item.getAttribute('data-lens') || 'N/A';
+        const aperture = item.getAttribute('data-aperture') || 'N/A';
+        const shutter = item.getAttribute('data-shutter') || 'N/A';
+        const iso = item.getAttribute('data-iso') || 'N/A';
+        const location = item.getAttribute('data-location') || 'Global';
+        const desc = item.getAttribute('data-desc') || '';
 
-        lightboxCategory.textContent = category;
-        lightboxTitle.textContent = title;
-        lightboxLocation.textContent = `📍 ${location}`;
-        lightboxDesc.textContent = desc;
+        if (lightboxImg) {
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.src = src;
+                lightboxImg.alt = title;
+                lightboxImg.style.opacity = '1';
+            }, 120);
+        }
 
-        exifCamera.textContent = camera;
-        exifLens.textContent = lens;
-        exifAperture.textContent = aperture;
-        exifShutter.textContent = shutter;
-        exifIso.textContent = iso;
+        if (lightboxCategory) lightboxCategory.textContent = category;
+        if (lightboxTitle) lightboxTitle.textContent = title;
+        if (lightboxLocation) lightboxLocation.textContent = `📍 ${location}`;
+        if (lightboxDesc) lightboxDesc.textContent = desc;
+
+        if (exifCamera) exifCamera.textContent = camera;
+        if (exifLens) exifLens.textContent = lens;
+        if (exifAperture) exifAperture.textContent = aperture;
+        if (exifShutter) exifShutter.textContent = shutter;
+        if (exifIso) exifIso.textContent = iso;
     };
 
     const showNext = () => {
+        visibleGalleryItems = Array.from(galleryItems).filter(i => !i.classList.contains('hide'));
         if (visibleGalleryItems.length <= 1) return;
         currentItemIndex = (currentItemIndex + 1) % visibleGalleryItems.length;
         updateLightboxData(visibleGalleryItems[currentItemIndex]);
     };
 
     const showPrev = () => {
+        visibleGalleryItems = Array.from(galleryItems).filter(i => !i.classList.contains('hide'));
         if (visibleGalleryItems.length <= 1) return;
         currentItemIndex = (currentItemIndex - 1 + visibleGalleryItems.length) % visibleGalleryItems.length;
         updateLightboxData(visibleGalleryItems[currentItemIndex]);
     };
 
     const closeLightbox = () => {
-        lightbox.classList.remove('active');
+        if (lightbox) lightbox.classList.remove('active');
         document.body.style.overflow = 'auto';
     };
 
@@ -210,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
+        if (!lightbox || !lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') closeLightbox();
         else if (e.key === 'ArrowRight') showNext();
         else if (e.key === 'ArrowLeft') showPrev();
@@ -224,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const serviceButtons = document.querySelectorAll('.service-btn');
 
     serviceButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', () => {
             const selectValue = btn.getAttribute('data-select');
             if (selectValue && projectTypeSelect) {
                 projectTypeSelect.value = selectValue;

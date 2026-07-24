@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajay Studio | Premium Photography Portfolio & Visual Narrative</title>
     <meta name="description" content="A curated showcase of premium street, portrait, landscape, editorial, and architectural photography. Capturing the poetry of fleeting moments.">
-    <!-- Google Fonts: Syne (Headings), Inter (Body) -->
+    <!-- Google Fonts: Syne (Ultra-bold Headings 700, 800, 900), Inter (Body 400, 500, 600, 700, 800) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -34,21 +34,22 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" id="hero">
+            <div class="hero-glow-bg"></div>
             <div class="hero-container">
                 <div class="hero-content">
                     <div class="hero-tag fade-in-up">
-                        <span class="dot"></span> Visual Narratives & Fine Art
+                        <span class="dot"></span> VISUAL NARRATIVES & FINE ART
                     </div>
-                    <h1 class="hero-title fade-in-up">Capturing the poetry of fleeting moments.</h1>
-                    <p class="hero-desc fade-in-up">A meticulous blend of light, composition, and human experience. Custom-crafted editorial, architectural, and street photography for those who value authentic visual stories.</p>
+                    <h1 class="hero-title fade-in-up">Capturing the poetry of <span class="gradient-text">fleeting moments.</span></h1>
+                    <p class="hero-desc fade-in-up">A meticulous blend of light, shadow composition, and human emotion. Custom editorial, architectural, and fine-art photography for visionaries.</p>
                     
                     <div class="hero-actions fade-in-up">
                         <a href="#work" class="btn btn-primary">
-                            <span>Explore Portfolio</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <span>EXPLORE PORTFOLIO</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
-                        <a href="#contact" class="btn btn-secondary">Book a Session</a>
+                        <a href="#contact" class="btn btn-secondary">BOOK SESSION</a>
                     </div>
 
                     <div class="hero-stats fade-in-up">
@@ -73,9 +74,9 @@
                     <div class="img-frame">
                         <img src="assets/images/street_tokyo.png" alt="Tokyo Neon Street Rain" class="hero-img">
                         <div class="hero-img-badge">
-                            <span class="badge-label">Featured Collection</span>
+                            <span class="badge-label">FEATURED SHOT</span>
                             <span class="badge-title">Tokyo Night Neon</span>
-                            <span class="badge-meta">Sony A7R V • 35mm f/1.4</span>
+                            <span class="badge-meta">Sony A7R V • 35mm f/1.4 GM</span>
                         </div>
                     </div>
                 </div>
@@ -87,17 +88,18 @@
             <div class="section-container">
                 <div class="section-header">
                     <div class="section-title-wrap">
-                        <span class="section-subtitle">Portfolio</span>
+                        <span class="section-subtitle">PORTFOLIO</span>
                         <h2 class="section-title">Curated Work</h2>
                     </div>
-                    <!-- Gallery Filters -->
+                    <!-- Complete Gallery Filters -->
                     <div class="gallery-filters" id="galleryFilters">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="street">Street</button>
-                        <button class="filter-btn" data-filter="portrait">Portrait</button>
-                        <button class="filter-btn" data-filter="architecture">Architecture</button>
-                        <button class="filter-btn" data-filter="editorial">Editorial</button>
-                        <button class="filter-btn" data-filter="nature">Nature</button>
+                        <button class="filter-btn active" data-filter="all">ALL</button>
+                        <button class="filter-btn" data-filter="street">STREET</button>
+                        <button class="filter-btn" data-filter="portrait">PORTRAIT</button>
+                        <button class="filter-btn" data-filter="architecture">ARCHITECTURE</button>
+                        <button class="filter-btn" data-filter="landscape">LANDSCAPE</button>
+                        <button class="filter-btn" data-filter="editorial">EDITORIAL</button>
+                        <button class="filter-btn" data-filter="nature">NATURE</button>
                     </div>
                 </div>
 
@@ -118,9 +120,9 @@
                         <div class="image-wrapper">
                             <img src="assets/images/street_tokyo.png" alt="Neon Rainfall, Tokyo" loading="lazy">
                             <div class="item-overlay">
-                                <span class="view-badge">View Detail</span>
+                                <span class="view-badge">EXPAND</span>
                                 <div class="item-details">
-                                    <span class="item-category">Street</span>
+                                    <span class="item-category">STREET</span>
                                     <h3 class="item-title">Neon Rainfall</h3>
                                     <p class="item-loc">📍 Tokyo, Japan</p>
                                 </div>
@@ -148,9 +150,9 @@
                         <div class="image-wrapper">
                             <img src="assets/images/portrait_bw.png" alt="Chasing Character Portrait" loading="lazy">
                             <div class="item-overlay">
-                                <span class="view-badge">View Detail</span>
+                                <span class="view-badge">EXPAND</span>
                                 <div class="item-details">
-                                    <span class="item-category">Portrait</span>
+                                    <span class="item-category">PORTRAIT</span>
                                     <h3 class="item-title">Chasing Character</h3>
                                     <p class="item-loc">📍 Studio Session</p>
                                 </div>
@@ -178,9 +180,9 @@
                         <div class="image-wrapper">
                             <img src="assets/images/architecture_minimal.png" alt="Concrete Formlines Architecture" loading="lazy">
                             <div class="item-overlay">
-                                <span class="view-badge">View Detail</span>
+                                <span class="view-badge">EXPAND</span>
                                 <div class="item-details">
-                                    <span class="item-category">Architecture</span>
+                                    <span class="item-category">ARCHITECTURE</span>
                                     <h3 class="item-title">Concrete Formlines</h3>
                                     <p class="item-loc">📍 Berlin, Germany</p>
                                 </div>
@@ -208,9 +210,9 @@
                         <div class="image-wrapper">
                             <img src="assets/images/landscape_mist.png" alt="Misty Highlands Landscape" loading="lazy">
                             <div class="item-overlay">
-                                <span class="view-badge">View Detail</span>
+                                <span class="view-badge">EXPAND</span>
                                 <div class="item-details">
-                                    <span class="item-category">Landscape</span>
+                                    <span class="item-category">LANDSCAPE</span>
                                     <h3 class="item-title">Misty Highlands</h3>
                                     <p class="item-loc">📍 Oregon, USA</p>
                                 </div>
@@ -238,9 +240,9 @@
                         <div class="image-wrapper">
                             <img src="assets/images/editorial_fashion.png" alt="Symmetry & Shape Editorial" loading="lazy">
                             <div class="item-overlay">
-                                <span class="view-badge">View Detail</span>
+                                <span class="view-badge">EXPAND</span>
                                 <div class="item-details">
-                                    <span class="item-category">Editorial</span>
+                                    <span class="item-category">EDITORIAL</span>
                                     <h3 class="item-title">Symmetry & Shape</h3>
                                     <p class="item-loc">📍 London, UK</p>
                                 </div>
@@ -268,9 +270,9 @@
                         <div class="image-wrapper">
                             <img src="assets/images/nature_macro.png" alt="Liquid Geometry Macro Leaf" loading="lazy">
                             <div class="item-overlay">
-                                <span class="view-badge">View Detail</span>
+                                <span class="view-badge">EXPAND</span>
                                 <div class="item-details">
-                                    <span class="item-category">Nature</span>
+                                    <span class="item-category">NATURE</span>
                                     <h3 class="item-title">Liquid Geometry</h3>
                                     <p class="item-loc">📍 Kyoto, Japan</p>
                                 </div>
@@ -298,18 +300,18 @@
                         </div>
                         <div class="about-experience-badge">
                             <span class="exp-number">12+</span>
-                            <span class="exp-text">Years Behind The Viewfinder</span>
+                            <span class="exp-text">YEARS BEHIND THE VIEWFINDER</span>
                         </div>
                     </div>
 
                     <div class="about-text-block">
-                        <span class="section-subtitle">Biography</span>
-                        <h2 class="about-title">Bespoke imagery built on intention & mastery.</h2>
-                        <p class="about-desc">Hello, I'm Ajay. I believe that photography is more than documenting a scene—it's an act of deep curation, patience, and visual alignment. Over the past decade, I've worked across fashion agencies, architectural firms, and street journals globally, crafting high-impact portfolios and narrative visual experiences.</p>
+                        <span class="section-subtitle">BIOGRAPHY</span>
+                        <h2 class="about-title">Bespoke imagery built on <span class="gold-highlight">intention & mastery.</span></h2>
+                        <p class="about-desc">Hello, I'm Ajay. I believe that photography is more than documenting a scene—it's an act of deep curation, patience, and visual alignment. Over the past decade, I've worked across fashion agencies, architectural firms, and street journals globally.</p>
                         <p class="about-desc">Every project is treated with a custom aesthetic, prioritizing visual storytelling over technical excess. My goal is to capture the essence of a space, the character of a person, or the ambient atmosphere of an environment in its purest state.</p>
                         
                         <div class="exhibitions-timeline">
-                            <h3 class="timeline-title">Selected Solo Exhibits</h3>
+                            <h3 class="timeline-title">SELECTED SOLO EXHIBITS</h3>
                             <div class="timeline-item">
                                 <span class="timeline-year">2025</span>
                                 <div class="timeline-info">
@@ -334,7 +336,7 @@
         <section id="services" class="services-section scroll-reveal">
             <div class="section-container">
                 <div class="section-header center-align">
-                    <span class="section-subtitle">Services & Rates</span>
+                    <span class="section-subtitle">SERVICES & RATES</span>
                     <h2 class="section-title">Collaborative Services</h2>
                     <p class="section-desc">Bespoke photographic solutions scaled to meet your creative and commercial projects.</p>
                 </div>
@@ -348,7 +350,7 @@
                         </div>
                         <p class="service-description">Dynamic style books, creative direction, model lookbooks, and high-fashion spreads tailored for print or web publication.</p>
                         <div class="service-pricing">
-                            <span class="price-label">Pricing</span>
+                            <span class="price-label">PRICING</span>
                             <span class="price-from">Custom Quote</span>
                         </div>
                         <ul class="service-features">
@@ -357,19 +359,19 @@
                             <li>High-end retouched deliverables</li>
                             <li>Commercial usage licensing</li>
                         </ul>
-                        <a href="#contact" class="service-btn" data-select="editorial">Inquire Package</a>
+                        <a href="#contact" class="service-btn" data-select="editorial">INQUIRE PACKAGE</a>
                     </div>
 
                     <!-- Package 2 -->
                     <div class="service-card highlighted">
-                        <div class="card-badge">Popular</div>
+                        <div class="card-badge">RECOMMENDED</div>
                         <div class="card-header">
                             <span class="service-num">02</span>
                             <h3 class="service-name">Architecture & Spaces</h3>
                         </div>
                         <p class="service-description">Professional spatial representations highlighting architectural volume, light transitions, texture, and structural details.</p>
                         <div class="service-pricing">
-                            <span class="price-label">Pricing</span>
+                            <span class="price-label">PRICING</span>
                             <span class="price-from">Custom Quote</span>
                         </div>
                         <ul class="service-features">
@@ -378,7 +380,7 @@
                             <li>Drone and high-angle vantage captures</li>
                             <li>Architectural review and crop guidelines</li>
                         </ul>
-                        <a href="#contact" class="service-btn btn-gold" data-select="architecture">Inquire Package</a>
+                        <a href="#contact" class="service-btn btn-gold" data-select="architecture">INQUIRE PACKAGE</a>
                     </div>
 
                     <!-- Package 3 -->
@@ -389,7 +391,7 @@
                         </div>
                         <p class="service-description">Curated museum-grade custom framed prints of street, landscape, and macro collections. Perfect for offices, galleries, and homes.</p>
                         <div class="service-pricing">
-                            <span class="price-label">Starting From</span>
+                            <span class="price-label">STARTING FROM</span>
                             <span class="price-from">$180</span>
                         </div>
                         <ul class="service-features">
@@ -398,7 +400,7 @@
                             <li>Hand-made wood frames (oak, walnut, charcoal)</li>
                             <li>Numbered editions with certificates</li>
                         </ul>
-                        <a href="#contact" class="service-btn" data-select="prints">Order Prints</a>
+                        <a href="#contact" class="service-btn" data-select="prints">ORDER PRINTS</a>
                     </div>
                 </div>
             </div>
@@ -409,35 +411,35 @@
             <div class="section-container">
                 <div class="contact-container">
                     <div class="contact-info-panel">
-                        <span class="section-subtitle">Let's Connect</span>
+                        <span class="section-subtitle">LET'S CONNECT</span>
                         <h2 class="contact-panel-title">Let's capture your story.</h2>
-                        <p class="contact-panel-desc">Whether you have a specific commercial inquiry, want to check print availability, or just want to collaborate on a creative project, feel free to drop a message. Let's make something exceptional.</p>
+                        <p class="contact-panel-desc">Whether you have a specific commercial inquiry, want to check print availability, or just want to collaborate on a creative project, feel free to drop a message.</p>
                         
                         <div class="contact-methods">
                             <div class="method-item">
                                 <div class="method-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                                 </div>
                                 <div class="method-text">
-                                    <span>Direct Email</span>
+                                    <span>DIRECT EMAIL</span>
                                     <a href="mailto:hello@ajaystudio.com">hello@ajaystudio.com</a>
                                 </div>
                             </div>
                             <div class="method-item">
                                 <div class="method-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                                 </div>
                                 <div class="method-text">
-                                    <span>Studio Location</span>
+                                    <span>STUDIO LOCATION</span>
                                     <span>San Francisco, California</span>
                                 </div>
                             </div>
                             <div class="method-item">
                                 <div class="method-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                                 </div>
                                 <div class="method-text">
-                                    <span>Response Time</span>
+                                    <span>RESPONSE TIME</span>
                                     <span>Within 24 Hours</span>
                                 </div>
                             </div>
@@ -481,7 +483,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-submit" id="submitBtn">
-                                <span class="btn-text">Send Message</span>
+                                <span class="btn-text">SEND MESSAGE</span>
                                 <span class="btn-loader"></span>
                             </button>
                         </form>
@@ -491,7 +493,7 @@
                             <div class="success-icon">✓</div>
                             <h3>Inquiry Received</h3>
                             <p>Thank you for reaching out. I've received your details and will review your vision checklist. Expect a personalized response within 24 hours.</p>
-                            <button class="btn btn-secondary" id="resetFormBtn">Send Another Inquiry</button>
+                            <button class="btn btn-secondary" id="resetFormBtn">SEND ANOTHER INQUIRY</button>
                         </div>
                     </div>
                 </div>
@@ -525,7 +527,7 @@
                 
                 <!-- EXIF Camera Specs Grid -->
                 <div class="lightbox-exif-specs">
-                    <h3>Camera Technical Settings</h3>
+                    <h3>CAMERA TECHNICAL SETTINGS</h3>
                     <div class="exif-grid">
                         <div class="exif-spec-item">
                             <span class="exif-label">Camera Body</span>
@@ -576,8 +578,8 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Ajay Studio. All Rights Reserved.</p>
                 <button class="back-to-top" id="backToTop" aria-label="Back to top">
-                    <span>Back to Top</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+                    <span>BACK TO TOP</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
                 </button>
             </div>
         </div>
