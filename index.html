@@ -19,9 +19,11 @@
             <a href="#" class="logo">AJAY<span>STUDIO</span></a>
             
             <nav class="nav-menu" id="navMenu">
-                <a href="#work" class="nav-link active">Work</a>
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#work" class="nav-link">Work</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#services" class="nav-link">Services</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
                 <a href="#contact" class="nav-link btn-inquire">Inquire</a>
             </nav>
 
@@ -52,26 +54,26 @@
                         <a href="#contact" class="btn btn-secondary">BOOK SESSION</a>
                     </div>
 
-                    <div class="hero-stats fade-in-up">
+                    <div class="hero-stats fade-in-up" id="heroStats">
                         <div class="stat-item">
-                            <span class="stat-num">12+</span>
+                            <span class="stat-num" data-target="12">0</span><span class="stat-plus">+</span>
                             <span class="stat-label">Years Experience</span>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
-                            <span class="stat-num">40+</span>
+                            <span class="stat-num" data-target="45">0</span><span class="stat-plus">+</span>
                             <span class="stat-label">Exhibitions</span>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
-                            <span class="stat-num">150+</span>
+                            <span class="stat-num" data-target="180">0</span><span class="stat-plus">+</span>
                             <span class="stat-label">Featured Works</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="hero-image-container fade-in-up">
-                    <div class="img-frame">
+                    <div class="img-frame tilt-effect">
                         <img src="assets/images/street_tokyo.png" alt="Tokyo Neon Street Rain" class="hero-img">
                         <div class="hero-img-badge">
                             <span class="badge-label">FEATURED SHOT</span>
@@ -80,6 +82,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="hero-scroll-indicator">
+                <span class="scroll-text">SCROLL</span>
+                <div class="scroll-line"><div class="scroll-dot"></div></div>
             </div>
         </section>
 
@@ -107,7 +115,7 @@
                 <div class="gallery-grid" id="galleryGrid">
                     
                     <!-- Card 1: Tokyo Street (Street) -->
-                    <div class="gallery-item street fade-in" data-index="0" data-src="assets/images/street_tokyo.png" 
+                    <div class="gallery-item street fade-in tilt-effect" data-index="0" data-src="assets/images/street_tokyo.png" 
                          data-title="Neon Rainfall" 
                          data-category="Street"
                          data-camera="Sony Alpha 7R V"
@@ -137,7 +145,7 @@
                     </div>
 
                     <!-- Card 2: B&W Portrait (Portrait) -->
-                    <div class="gallery-item portrait fade-in" data-index="1" data-src="assets/images/portrait_bw.png"
+                    <div class="gallery-item portrait fade-in tilt-effect" data-index="1" data-src="assets/images/portrait_bw.png"
                          data-title="Chasing Character"
                          data-category="Portrait"
                          data-camera="Fujifilm GFX 100S"
@@ -167,7 +175,7 @@
                     </div>
 
                     <!-- Card 3: Concrete Shadows (Architecture) -->
-                    <div class="gallery-item architecture fade-in" data-index="2" data-src="assets/images/architecture_minimal.png"
+                    <div class="gallery-item architecture fade-in tilt-effect" data-index="2" data-src="assets/images/architecture_minimal.png"
                          data-title="Concrete Formlines"
                          data-category="Architecture"
                          data-camera="Sony Alpha 7R V"
@@ -197,7 +205,7 @@
                     </div>
 
                     <!-- Card 4: Misty Pines (Landscape) -->
-                    <div class="gallery-item landscape fade-in" data-index="3" data-src="assets/images/landscape_mist.png"
+                    <div class="gallery-item landscape fade-in tilt-effect" data-index="3" data-src="assets/images/landscape_mist.png"
                          data-title="Misty Highlands"
                          data-category="Landscape"
                          data-camera="Canon EOS R5"
@@ -227,7 +235,7 @@
                     </div>
 
                     <!-- Card 5: Avant-Garde Outfit (Editorial) -->
-                    <div class="gallery-item editorial fade-in" data-index="4" data-src="assets/images/editorial_fashion.png"
+                    <div class="gallery-item editorial fade-in tilt-effect" data-index="4" data-src="assets/images/editorial_fashion.png"
                          data-title="Symmetry & Shape"
                          data-category="Editorial"
                          data-camera="Fujifilm GFX 100S"
@@ -257,7 +265,7 @@
                     </div>
 
                     <!-- Card 6: Morning Leaf (Nature/Macro) -->
-                    <div class="gallery-item nature fade-in" data-index="5" data-src="assets/images/nature_macro.png"
+                    <div class="gallery-item nature fade-in tilt-effect" data-index="5" data-src="assets/images/nature_macro.png"
                          data-title="Liquid Geometry"
                          data-category="Nature"
                          data-camera="Canon EOS R5"
@@ -295,7 +303,7 @@
             <div class="section-container">
                 <div class="about-container">
                     <div class="about-photo-block">
-                        <div class="about-img-wrapper">
+                        <div class="about-img-wrapper tilt-effect">
                             <img src="assets/images/portrait_bw.png" alt="Ajay Photographer Portrait" class="about-img">
                         </div>
                         <div class="about-experience-badge">
@@ -401,6 +409,55 @@
                             <li>Numbered editions with certificates</li>
                         </ul>
                         <a href="#contact" class="service-btn" data-select="prints">ORDER PRINTS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section scroll-reveal">
+            <div class="section-container">
+                <div class="section-header center-align">
+                    <span class="section-subtitle">CLIENT REVIEWS</span>
+                    <h2 class="section-title">What Visionaries Say</h2>
+                    <p class="section-desc">Feedback from galleries, agency directors, and private collectors worldwide.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="quote">"Ajay's architectural imagery brought our high-density museum project to life in international press. His eye for lighting transitions is unprecedented."</p>
+                        <div class="author-info">
+                            <div class="author-avatar">M</div>
+                            <div>
+                                <h4 class="author-name">Marcus Vance</h4>
+                                <span class="author-role">Lead Architect, Studio Arc</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card highlighted">
+                        <div class="stars">★★★★★</div>
+                        <p class="quote">"The street lookbook produced for our Autumn campaign exceeded every aesthetic standard. The color grading and depth are museum-grade."</p>
+                        <div class="author-info">
+                            <div class="author-avatar gold">S</div>
+                            <div>
+                                <h4 class="author-name">Sophia Laurent</h4>
+                                <span class="author-role">Creative Director, Vogue Paris</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="quote">"The fine art print delivery for our corporate collection was immaculate. Hahnemühle cotton paper texture paired with charcoal frames."</p>
+                        <div class="author-info">
+                            <div class="author-avatar">D</div>
+                            <div>
+                                <h4 class="author-name">David Thorne</h4>
+                                <span class="author-role">Art Collector, NYC</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -567,6 +624,7 @@
                     <a href="#work">Work</a>
                     <a href="#about">About</a>
                     <a href="#services">Services</a>
+                    <a href="#testimonials">Reviews</a>
                     <a href="#contact">Inquire</a>
                 </div>
                 <div class="footer-socials">

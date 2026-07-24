@@ -1,7 +1,7 @@
 /**
  * Ajay Studio - Core Interactive Behaviors
- * Handles Navigation, Gallery Filtering, Lightbox, Scroll Spy & Form Submissions
- * Zero-dependency robust Vanilla JS script
+ * Includes 60-120fps RequestAnimationFrame Count-up, Subtle 3D Card Tilt,
+ * Scroll-Spy Navigation, Gallery Filtering & Lightbox Modal.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.toggle('menu-open');
         });
 
-        // Close menu on link click
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('open');
@@ -83,7 +82,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 2. SCROLL REVEAL EFFECT (Intersection Observer)
+    // 2. 60-120FPS REQUESTANIMATIONFRAME COUNT-UP
+    // ==========================================
+    const statNumbers = document.querySelectorAll('.stat-num');
+    let animatedStats = false;
+
+    const animateCountUp = (element, target) => {
+        let startTimestamp = null;
+        const duration = 1600; // ms
+
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            // Easing function: easeOutCubic
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.floor(easeProgress * target);
+            
+            element.textContent = currentVal;
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                element.textContent = target;
+            }
+        };
+
+        window.requestAnimationFrame(step);
+    };
+
+    const triggerStatsAnimation = () => {
+        const statsSection = document.getElementById('heroStats');
+        if (!statsSection || animatedStats) return;
+
+        const rect = statsSection.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            animatedStats = true;
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'), 10) || 0;
+                animateCountUp(stat, target);
+            });
+        }
+    };
+
+    window.addEventListener('scroll', triggerStatsAnimation, { passive: true });
+    // Trigger on load if already in viewport
+    triggerStatsAnimation();
+
+
+    // ==========================================
+    // 3. SUBTLE 3D CARD TILT MICRO-INTERACTION (60-120FPS)
+    // ==========================================
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouchDevice) {
+        const tiltCards = document.querySelectorAll('.tilt-effect');
+
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -6; // Max 6deg tilt
+                const rotateY = ((x - centerX) / centerX) * 6;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        });
+    }
+
+
+    // ==========================================
+    // 4. SCROLL REVEAL EFFECT (Intersection Observer)
     // ==========================================
     const revealElements = document.querySelectorAll('.scroll-reveal');
 
@@ -107,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 3. DYNAMIC GALLERY FILTERING
+    // 5. DYNAMIC GALLERY FILTERING
     // ==========================================
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -125,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (matches) {
                     item.classList.remove('hide');
                     item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
+                    item.style.transform = 'translate3d(0, 0, 0)';
                 } else {
                     item.classList.add('hide');
                 }
@@ -135,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 4. IMMERSIVE LIGHTBOX WITH EXIF DATA
+    // 6. IMMERSIVE LIGHTBOX MODAL WITH EXIF DATA
     // ==========================================
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -248,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 5. SERVICE BUTTON QUICK SELECT & FORM SUBMIT
+    // 7. SERVICE BUTTON QUICK SELECT & FORM SUBMIT
     // ==========================================
     const projectTypeSelect = document.getElementById('projectType');
     const serviceButtons = document.querySelectorAll('.service-btn');

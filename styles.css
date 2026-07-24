@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Ajay Studio - Modern Photography Design System (Bold & Aesthetic Theme)
+   Ajay Studio - Modern Photography Design System (60-120fps Animated & Aesthetic)
    ========================================================================== */
 
 /* 1. CSS VARIABLES & COLOR PALETTE */
@@ -162,7 +162,7 @@ main {
     font-weight: 900;
 }
 
-/* 4. BUTTONS & UI COMPONENTS */
+/* 4. GPU-ACCELERATED BUTTONS & UI COMPONENTS */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -176,6 +176,16 @@ main {
     border-radius: var(--radius-sm);
     transition: var(--transition-smooth);
     text-transform: uppercase;
+    will-change: transform, box-shadow;
+    transform: translate3d(0, 0, 0);
+}
+
+.btn svg {
+    transition: transform 0.3s var(--ease-out);
+}
+
+.btn:hover svg {
+    transform: translateX(4px);
 }
 
 .btn-primary {
@@ -187,7 +197,7 @@ main {
 .btn-primary:hover {
     background-color: var(--accent-gold);
     color: var(--bg-primary);
-    transform: translateY(-3px);
+    transform: translate3d(0, -3px, 0);
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
 }
 
@@ -201,7 +211,7 @@ main {
     border-color: var(--border-gold);
     color: var(--accent-gold);
     background-color: var(--accent-gold-light);
-    transform: translateY(-3px);
+    transform: translate3d(0, -3px, 0);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -316,7 +326,7 @@ main {
     border-radius: 2px;
 }
 
-/* 6. HERO SECTION */
+/* 6. HERO SECTION & SCROLL INDICATOR */
 .hero {
     padding: 5.5rem 0 6.5rem 0;
     position: relative;
@@ -329,7 +339,7 @@ main {
     left: 15%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(8, 8, 10, 0) 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(8, 8, 10, 0) 70%);
     pointer-events: none;
     z-index: 0;
 }
@@ -405,7 +415,10 @@ main {
 
 .stat-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    column-gap: 2px;
 }
 
 .stat-num {
@@ -416,7 +429,15 @@ main {
     line-height: 1;
 }
 
+.stat-plus {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--accent-gold);
+}
+
 .stat-label {
+    width: 100%;
     font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -443,6 +464,9 @@ main {
     border: 1px solid var(--border-color);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
     aspect-ratio: 4/5;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.25s var(--ease-out);
 }
 
 .hero-img {
@@ -451,10 +475,6 @@ main {
     object-fit: cover;
     filter: contrast(105%);
     transition: var(--transition-smooth);
-}
-
-.img-frame:hover .hero-img {
-    transform: scale(1.04);
 }
 
 .hero-img-badge {
@@ -494,10 +514,51 @@ main {
     font-family: monospace;
 }
 
+/* Scroll Indicator Animation */
+.hero-scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 4rem;
+    opacity: 0.8;
+}
+
+.scroll-text {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+.scroll-line {
+    width: 2px;
+    height: 35px;
+    background: linear-gradient(to bottom, var(--accent-gold), transparent);
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.scroll-dot {
+    width: 100%;
+    height: 40%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    animation: scrollDotAnim 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollDotAnim {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(250%); }
+}
+
 /* Animations */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
+    will-change: transform, opacity;
     animation: fadeInUp 0.8s var(--ease-out) forwards;
 }
 
@@ -511,11 +572,11 @@ main {
 @keyframes fadeInUp {
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
-/* 7. GALLERY & PORTFOLIO (BALANCED & BOLD GRID) */
+/* 7. GALLERY & PORTFOLIO */
 .work-section {
     padding: 7.5rem 0;
     border-top: 1px solid var(--border-color);
@@ -574,12 +635,14 @@ main {
     overflow: hidden;
     border: 1px solid var(--border-color);
     background-color: var(--bg-card);
-    transition: var(--transition-smooth);
+    transition: transform 0.4s var(--ease-out), border-color 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .gallery-item:hover {
     border-color: var(--border-gold);
-    transform: translateY(-8px);
+    transform: translate3d(0, -8px, 0);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
 }
 
@@ -596,6 +659,7 @@ main {
     object-fit: cover;
     filter: contrast(105%);
     transition: transform 0.7s var(--ease-out);
+    will-change: transform;
 }
 
 .gallery-item:hover img {
@@ -672,7 +736,6 @@ main {
     font-weight: 600;
 }
 
-/* Filter Hide Class */
 .gallery-item.hide {
     display: none !important;
 }
@@ -843,10 +906,12 @@ main {
     display: flex;
     flex-direction: column;
     position: relative;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
+    transform: translate3d(0, -8px, 0);
     border-color: var(--border-hover);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
 }
@@ -976,10 +1041,102 @@ main {
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
 }
 
-/* 10. CONTACT SECTION */
+/* 10. TESTIMONIALS SECTION */
+.testimonials-section {
+    padding: 7.5rem 0;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.25rem;
+    margin-top: 3.5rem;
+}
+
+.testimonial-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.testimonial-card:hover {
+    transform: translate3d(0, -6px, 0);
+    border-color: var(--border-gold);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.testimonial-card.highlighted {
+    border-color: var(--border-gold);
+    background-color: var(--bg-primary);
+}
+
+.stars {
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.25rem;
+}
+
+.quote {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 44px;
+    height: 44px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.author-avatar.gold {
+    background-color: var(--accent-gold-light);
+    border-color: var(--border-gold);
+    color: var(--accent-gold);
+}
+
+.author-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.author-role {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* 11. CONTACT SECTION */
 .contact-section {
     padding: 7.5rem 0;
-    background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
 }
 
@@ -1218,7 +1375,7 @@ main {
     font-weight: 400;
 }
 
-/* 11. IMMERSIVE LIGHTBOX MODAL */
+/* 12. IMMERSIVE LIGHTBOX MODAL */
 .lightbox {
     position: fixed;
     top: 0;
@@ -1399,16 +1556,17 @@ main {
 /* Scroll reveal trigger classes */
 .scroll-reveal {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translate3d(0, 40px, 0);
+    will-change: transform, opacity;
     transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
 
 .scroll-reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
 }
 
-/* 12. FOOTER SECTION */
+/* 13. FOOTER SECTION */
 .main-footer {
     background-color: var(--bg-primary);
     border-top: 1px solid var(--border-color);
@@ -1479,7 +1637,7 @@ main {
     color: var(--accent-gold);
 }
 
-/* 13. RESPONSIVE BREAKPOINTS */
+/* 14. RESPONSIVE BREAKPOINTS */
 @media (max-width: 1100px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -1521,7 +1679,7 @@ main {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .services-grid {
+    .services-grid, .testimonials-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1564,7 +1722,7 @@ main {
     }
     
     .nav-menu.open {
-        height: 280px;
+        height: 320px;
     }
     
     .main-header.menu-open .menu-toggle .bar:nth-child(1) {
