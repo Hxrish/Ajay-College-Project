@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajay Studio | Premium Photography Portfolio & Visual Narrative</title>
+    <meta name="description" content="A curated showcase of premium street, portrait, landscape, editorial, and architectural photography. Capturing the poetry of fleeting moments.">
+    <!-- Google Fonts: Syne (Headings), Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="#">AJAY<span>STUDIO</span></a>
+        </div>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#work" class="nav-link">Work</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#contact" class="nav-link btn-inquire">Inquire</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-subtitle fade-in-up">Visual Narratives</span>
+                <h1 class="hero-title fade-in-up">Capturing the poetry of fleeting moments.</h1>
+                <p class="hero-desc fade-in-up">A meticulous blend of light, composition, and human experience. Custom-crafted editorial, architectural, and street photography for those who value authentic visual stories.</p>
+                <div class="hero-actions fade-in-up">
+                    <a href="#work" class="btn btn-primary">Explore Work</a>
+                    <a href="#contact" class="btn btn-secondary">Book Session</a>
+                </div>
+            </div>
+            <div class="hero-image-container fade-in-up">
+                <img src="assets/images/street_tokyo.png" alt="Tokyo Neon Street Rain" class="hero-img">
+                <div class="hero-img-badge">
+                    <span class="badge-label">Featured Shot</span>
+                    <span class="badge-title">Tokyo Night Neon</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery / Work Section -->
+        <section id="work" class="work-section scroll-reveal">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <span class="section-subtitle">Portfolio</span>
+                    <h2 class="section-title">Curated Work</h2>
+                </div>
+                <!-- Gallery Filters -->
+                <div class="gallery-filters" id="galleryFilters">
+                    <button class="filter-btn active" data-filter="all">All Shots</button>
+                    <button class="filter-btn" data-filter="street">Street</button>
+                    <button class="filter-btn" data-filter="portrait">Portrait</button>
+                    <button class="filter-btn" data-filter="architecture">Architecture</button>
+                    <button class="filter-btn" data-filter="editorial">Editorial</button>
+                    <button class="filter-btn" data-filter="nature">Nature</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Staggered Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                
+                <!-- Card 1: Tokyo Street (Street) -->
+                <div class="gallery-item street fade-in" data-index="0" data-src="assets/images/street_tokyo.png" 
+                     data-title="Neon Rainfall" 
+                     data-category="Street"
+                     data-camera="Sony Alpha 7R V"
+                     data-lens="FE 35mm f/1.4 GM"
+                     data-aperture="f/1.6"
+                     data-shutter="1/160s"
+                     data-iso="ISO 800"
+                     data-location="Tokyo, Japan"
+                     data-desc="Reflections of neon advertisements mirroring in rain-slicked side alleys. An exploration of solitude in one of the world's densest urban landscapes.">
+                    <div class="image-wrapper">
+                        <img src="assets/images/street_tokyo.png" alt="Neon Rainfall, Tokyo" loading="lazy">
+                        <div class="item-overlay">
+                            <div class="item-details">
+                                <span class="item-category">Street</span>
+                                <h3 class="item-title">Neon Rainfall</h3>
+                            </div>
+                            <div class="item-exif">
+                                <span>35mm</span>
+                                <span>f/1.6</span>
+                                <span>1/160s</span>
+                                <span>ISO 800</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: B&W Portrait (Portrait) -->
+                <div class="gallery-item portrait fade-in" data-index="1" data-src="assets/images/portrait_bw.png"
+                     data-title="Chasing Character"
+                     data-category="Portrait"
+                     data-camera="Fujifilm GFX 100S"
+                     data-lens="GF 80mm f/1.7 R WR"
+                     data-aperture="f/1.8"
+                     data-shutter="1/250s"
+                     data-iso="ISO 100"
+                     data-location="Studio Studio"
+                     data-desc="A dramatic studio portrait studying the subtle contours and story detailed in facial expressions. Emphasizing high-contrast shadows to bring out deep character.">
+                    <div class="image-wrapper">
+                        <img src="assets/images/portrait_bw.png" alt="Chasing Character Portrait" loading="lazy">
+                        <div class="item-overlay">
+                            <div class="item-details">
+                                <span class="item-category">Portrait</span>
+                                <h3 class="item-title">Chasing Character</h3>
+                            </div>
+                            <div class="item-exif">
+                                <span>80mm</span>
+                                <span>f/1.8</span>
+                                <span>1/250s</span>
+                                <span>ISO 100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Concrete Shadows (Architecture) -->
+                <div class="gallery-item architecture fade-in" data-index="2" data-src="assets/images/architecture_minimal.png"
+                     data-title="Concrete Formlines"
+                     data-category="Architecture"
+                     data-camera="Sony Alpha 7R V"
+                     data-lens="FE 24-70mm f/2.8 GM II"
+                     data-aperture="f/8.0"
+                     data-shutter="1/400s"
+                     data-iso="ISO 100"
+                     data-location="Berlin, Germany"
+                     data-desc="Minimalist architectural shapes meeting sharp diagonal shadows. Highlighting the raw textured concrete and geometric alignment under intense sunlight.">
+                    <div class="image-wrapper">
+                        <img src="assets/images/architecture_minimal.png" alt="Concrete Formlines Architecture" loading="lazy">
+                        <div class="item-overlay">
+                            <div class="item-details">
+                                <span class="item-category">Architecture</span>
+                                <h3 class="item-title">Concrete Formlines</h3>
+                            </div>
+                            <div class="item-exif">
+                                <span>45mm</span>
+                                <span>f/8.0</span>
+                                <span>1/400s</span>
+                                <span>ISO 100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Misty Pines (Landscape) -->
+                <div class="gallery-item landscape fade-in" data-index="3" data-src="assets/images/landscape_mist.png"
+                     data-title="Misty Highlands"
+                     data-category="Landscape"
+                     data-camera="Canon EOS R5"
+                     data-lens="RF 70-200mm f/2.8L IS USM"
+                     data-aperture="f/5.6"
+                     data-shutter="1/125s"
+                     data-iso="ISO 200"
+                     data-location="Oregon, USA"
+                     data-desc="Layered ridges of pine forest fading into early morning mist. The telephoto perspective compresses the mountain tiers, emphasizing scale and quietude.">
+                    <div class="image-wrapper">
+                        <img src="assets/images/landscape_mist.png" alt="Misty Highlands Landscape" loading="lazy">
+                        <div class="item-overlay">
+                            <div class="item-details">
+                                <span class="item-category">Landscape</span>
+                                <h3 class="item-title">Misty Highlands</h3>
+                            </div>
+                            <div class="item-exif">
+                                <span>120mm</span>
+                                <span>f/5.6</span>
+                                <span>1/125s</span>
+                                <span>ISO 200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Avant-Garde Outfit (Editorial) -->
+                <div class="gallery-item editorial fade-in" data-index="4" data-src="assets/images/editorial_fashion.png"
+                     data-title="Symmetry & Shape"
+                     data-category="Editorial"
+                     data-camera="Fujifilm GFX 100S"
+                     data-lens="GF 110mm f/2 R LM WR"
+                     data-aperture="f/2.2"
+                     data-shutter="1/200s"
+                     data-iso="ISO 160"
+                     data-location="London, UK"
+                     data-desc="High-fashion study focusing on structural patterns, complementary color blocks, and strong geometric alignments. A composition that blurs fashion and structural art.">
+                    <div class="image-wrapper">
+                        <img src="assets/images/editorial_fashion.png" alt="Symmetry & Shape Editorial" loading="lazy">
+                        <div class="item-overlay">
+                            <div class="item-details">
+                                <span class="item-category">Editorial</span>
+                                <h3 class="item-title">Symmetry & Shape</h3>
+                            </div>
+                            <div class="item-exif">
+                                <span>110mm</span>
+                                <span>f/2.2</span>
+                                <span>1/200s</span>
+                                <span>ISO 160</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Morning Leaf (Nature/Macro) -->
+                <div class="gallery-item nature fade-in" data-index="5" data-src="assets/images/nature_macro.png"
+                     data-title="Liquid Geometry"
+                     data-category="Nature"
+                     data-camera="Canon EOS R5"
+                     data-lens="RF 100mm f/2.8L Macro IS USM"
+                     data-aperture="f/4.0"
+                     data-shutter="1/80s"
+                     data-iso="ISO 320"
+                     data-location="Kyoto, Japan"
+                     data-desc="Morning dew droplets resting in suspended symmetry along the microscopic ribs of a bamboo leaf. An exploration of geometry and tension in the micro-cosmos.">
+                    <div class="image-wrapper">
+                        <img src="assets/images/nature_macro.png" alt="Liquid Geometry Macro Leaf" loading="lazy">
+                        <div class="item-overlay">
+                            <div class="item-details">
+                                <span class="item-category">Nature</span>
+                                <h3 class="item-title">Liquid Geometry</h3>
+                            </div>
+                            <div class="item-exif">
+                                <span>100mm</span>
+                                <span>f/4.0</span>
+                                <span>1/80s</span>
+                                <span>ISO 320</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section scroll-reveal">
+            <div class="about-container">
+                <div class="about-photo-block">
+                    <img src="assets/images/portrait_bw.png" alt="Ajay Photographer Portrait" class="about-img">
+                    <div class="about-experience-badge">
+                        <span class="exp-number">12+</span>
+                        <span class="exp-text">Years behind the viewfinder</span>
+                    </div>
+                </div>
+                <div class="about-text-block">
+                    <span class="section-subtitle">Biography</span>
+                    <h2 class="about-title">Bespoke imagery built on intention.</h2>
+                    <p class="about-desc">Hello, I'm Ajay. I believe that photography is more than just documenting a scene—it's an act of deep curation, patience, and visual alignment. Over the past decade, I've worked across fashion agencies, architectural firms, and street journals globally, crafting high-impact portfolios and narrative visual experiences.</p>
+                    <p class="about-desc">Every project is treated with a custom aesthetic, prioritizing visual storytelling over technical excess. My goal is to capture the essence of a space, the character of a person, or the ambient atmosphere of an environment in its purest state.</p>
+                    
+                    <div class="exhibitions-timeline">
+                        <h3 class="timeline-title">Selected Solo Exhibits</h3>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2025</span>
+                            <div class="timeline-info">
+                                <h4>Asymmetry of Shadows</h4>
+                                <p>Galerie d'Art, Paris</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2023</span>
+                            <div class="timeline-info">
+                                <h4>Muted Ridges & Neon Lanes</h4>
+                                <p>Metropolitan Center of Photography, New York</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section scroll-reveal">
+            <div class="section-header center-align">
+                <span class="section-subtitle">Services & Rates</span>
+                <h2 class="section-title">Collaborative Services</h2>
+                <p class="section-desc">Bespoke photographic solutions scaled to meet your creative and commercial projects.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Package 1 -->
+                <div class="service-card">
+                    <span class="service-num">01</span>
+                    <h3 class="service-name">Editorial & Fashion</h3>
+                    <p class="service-description">Dynamic style books, creative direction, model lookbooks, and high-fashion spreads tailored for print or web publication.</p>
+                    <div class="service-pricing">
+                        <span class="price-from">Inquire for pricing</span>
+                    </div>
+                    <ul class="service-features">
+                        <li>Creative moodboards & styling direction</li>
+                        <li>Full day or half day shooting options</li>
+                        <li>High-end retouched deliverables</li>
+                        <li>Commercial usage licensing</li>
+                    </ul>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="service-card highlighted">
+                    <span class="service-num">02</span>
+                    <h3 class="service-name">Architecture & Spaces</h3>
+                    <p class="service-description">Professional spatial representations highlighting architectural volume, light transitions, texture, and structural details.</p>
+                    <div class="service-pricing">
+                        <span class="price-from">Inquire for pricing</span>
+                    </div>
+                    <ul class="service-features">
+                        <li>Interior & exterior twilight sessions</li>
+                        <li>Perspective corrected compositions</li>
+                        <li>Drone and high-angle vantage captures</li>
+                        <li>Architectural review and crop guidelines</li>
+                    </ul>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="service-card">
+                    <span class="service-num">03</span>
+                    <h3 class="service-name">Fine Art Prints</h3>
+                    <p class="service-description">Curated museum-grade custom framed prints of street, landscape, and macro collections. Perfect for offices, galleries, and homes.</p>
+                    <div class="service-pricing">
+                        <span class="price-from">Starting at $180</span>
+                    </div>
+                    <ul class="service-features">
+                        <li>Hahnemühle Photo Rag 100% Cotton paper</li>
+                        <li>Archival pigment ink prints</li>
+                        <li>Hand-made wood frames (oak, walnut, charcoal)</li>
+                        <li>Numbered editions with certificates</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section scroll-reveal">
+            <div class="contact-container">
+                <div class="contact-info-panel">
+                    <span class="section-subtitle">Let's Connect</span>
+                    <h2 class="contact-panel-title">Let's capture your story.</h2>
+                    <p class="contact-panel-desc">Whether you have a specific commercial inquiry, want to check print availability, or just want to collaborate on a creative project, feel free to drop a message. Let's make something exceptional.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="method-item">
+                            <span class="method-icon">💬</span>
+                            <div class="method-text">
+                                <span>General Inquiry</span>
+                                <a href="mailto:hello@ajaystudio.com">hello@ajaystudio.com</a>
+                            </div>
+                        </div>
+                        <div class="method-item">
+                            <span class="method-icon">📍</span>
+                            <div class="method-text">
+                                <span>Based In</span>
+                                <span>San Francisco, California</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Questionnaire Booking Form -->
+                <div class="contact-form-panel">
+                    <form id="inquiryForm" class="inquiry-form">
+                        <div class="form-row-two">
+                            <div class="form-group">
+                                <label for="clientName">Your Name</label>
+                                <input type="text" id="clientName" name="name" required placeholder="e.g. Elena Rostova">
+                            </div>
+                            <div class="form-group">
+                                <label for="clientEmail">Email Address</label>
+                                <input type="email" id="clientEmail" name="email" required placeholder="e.g. elena@example.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row-two">
+                            <div class="form-group">
+                                <label for="projectType">Project Type</label>
+                                <select id="projectType" name="projectType">
+                                    <option value="editorial">Editorial / Fashion shoot</option>
+                                    <option value="architecture">Architectural / Space capture</option>
+                                    <option value="portrait">Character Portrait session</option>
+                                    <option value="prints">Fine Art Print order</option>
+                                    <option value="collab">Creative Collaboration</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="shootDate">Desired Date (Optional)</label>
+                                <input type="date" id="shootDate" name="shootDate">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visionDescription">Describe Your Vision</label>
+                            <textarea id="visionDescription" name="vision" rows="4" required placeholder="Tell me about the mood, location concept, or framing specifications you are thinking of..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                    </form>
+                    
+                    <!-- Form Success Overlay -->
+                    <div class="form-success-card" id="formSuccess">
+                        <div class="success-icon">✓</div>
+                        <h3>Inquiry Received</h3>
+                        <p>Thank you for reaching out. I've received your details and will review your vision checklist. Expect a personalized response within 24 hours.</p>
+                        <button class="btn btn-secondary" id="resetFormBtn">Send Another Inquiry</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fullscreen Immersive Lightbox Modal -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox Modal">
+        <!-- Close Button -->
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">&times;</button>
+        
+        <!-- Navigation Buttons -->
+        <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous Image">&#10216;</button>
+        <button class="lightbox-nav next" id="lightboxNext" aria-label="Next Image">&#10217;</button>
+        
+        <div class="lightbox-content">
+            <!-- Image Panel -->
+            <div class="lightbox-image-panel">
+                <img src="" alt="" id="lightboxImg">
+            </div>
+            
+            <!-- Information Pane -->
+            <div class="lightbox-info-panel">
+                <div class="lightbox-header-info">
+                    <span class="lightbox-category" id="lightboxCategory">Street</span>
+                    <h2 class="lightbox-title" id="lightboxTitle">Neon Rainfall</h2>
+                    <p class="lightbox-location" id="lightboxLocation">📍 Tokyo, Japan</p>
+                </div>
+                
+                <div class="lightbox-description">
+                    <p id="lightboxDesc">Reflections of neon advertisements mirroring in rain-slicked side alleys. An exploration of solitude in one of the world's densest urban landscapes.</p>
+                </div>
+                
+                <!-- EXIF Camera Specs Grid -->
+                <div class="lightbox-exif-specs">
+                    <h3>Camera Technical Settings</h3>
+                    <div class="exif-grid">
+                        <div class="exif-spec-item">
+                            <span class="exif-label">Camera Body</span>
+                            <span class="exif-value" id="exifCamera">Sony Alpha 7R V</span>
+                        </div>
+                        <div class="exif-spec-item">
+                            <span class="exif-label">Lens Profile</span>
+                            <span class="exif-value" id="exifLens">FE 35mm f/1.4 GM</span>
+                        </div>
+                        <div class="exif-spec-item">
+                            <span class="exif-label">Aperture</span>
+                            <span class="exif-value" id="exifAperture">f/1.6</span>
+                        </div>
+                        <div class="exif-spec-item">
+                            <span class="exif-label">Shutter Speed</span>
+                            <span class="exif-value" id="exifShutter">1/160s</span>
+                        </div>
+                        <div class="exif-spec-item">
+                            <span class="exif-label">Sensitivity</span>
+                            <span class="exif-value" id="exifIso">ISO 800</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#">AJAY<span>STUDIO</span></a>
+                <p>Curated photography. Crafted narratives.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Inquire</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://behance.net" target="_blank" rel="noopener">Behance</a>
+                <a href="https://vimeo.com" target="_blank" rel="noopener">Vimeo</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ajay Studio. All Rights Reserved. Built with custom code.</p>
+            <p class="footer-tech-tag">Crafted in HTML, CSS & Vanilla JS.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
