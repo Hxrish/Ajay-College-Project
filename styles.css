@@ -576,7 +576,7 @@ main {
     }
 }
 
-/* 7. GALLERY & PORTFOLIO */
+/* 7. GALLERY & PORTFOLIO (SINGLE-ROW GLIDING FILTER TAB BAR) */
 .work-section {
     padding: 7.5rem 0;
     border-top: 1px solid var(--border-color);
@@ -589,17 +589,49 @@ main {
     margin-bottom: 3.5rem;
 }
 
+/* Filter Bar Wrapper & Gliding Slider */
+.gallery-filters-wrapper {
+    max-width: 100%;
+}
+
 .gallery-filters {
-    display: flex;
-    gap: 0.4rem;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     background-color: var(--bg-secondary);
     padding: 0.4rem;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-pill);
-    flex-wrap: wrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.gallery-filters::-webkit-scrollbar {
+    display: none;
+}
+
+/* Gliding Active Background Indicator Pill */
+.filter-indicator {
+    position: absolute;
+    top: 0.4rem;
+    left: 0;
+    height: calc(100% - 0.8rem);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
+    transition: transform 0.35s var(--ease-out), width 0.35s var(--ease-out);
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform, width;
 }
 
 .filter-btn {
+    position: relative;
+    z-index: 2;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -607,7 +639,10 @@ main {
     cursor: pointer;
     padding: 0.55rem 1.25rem;
     border-radius: var(--radius-pill);
-    transition: var(--transition-fast);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    background: transparent;
+    border: none;
 }
 
 .filter-btn:hover {
@@ -615,10 +650,7 @@ main {
 }
 
 .filter-btn.active {
-    background-color: var(--bg-card);
     color: var(--accent-gold);
-    border: 1px solid var(--border-gold);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 /* 3-Column Clean Grid */
@@ -635,8 +667,8 @@ main {
     overflow: hidden;
     border: 1px solid var(--border-color);
     background-color: var(--bg-card);
-    transition: transform 0.4s var(--ease-out), border-color 0.4s ease, box-shadow 0.4s ease;
-    will-change: transform;
+    transition: transform 0.4s var(--ease-out), opacity 0.4s var(--ease-out), filter 0.4s var(--ease-out), border-color 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform, opacity, filter;
     transform: translate3d(0, 0, 0);
 }
 

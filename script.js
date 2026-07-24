@@ -1,7 +1,7 @@
 /**
  * Ajay Studio - Core Interactive Behaviors
- * Includes 60-120fps RequestAnimationFrame Count-up, Subtle 3D Card Tilt,
- * Scroll-Spy Navigation, Gallery Filtering & Lightbox Modal.
+ * Includes 60-120fps Gliding Active Filter Indicator, Card Filtering Animations,
+ * RequestAnimationFrame Count-up, 3D Tilt, Scroll-Spy Navigation & Lightbox.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -89,13 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const animateCountUp = (element, target) => {
         let startTimestamp = null;
-        const duration = 1600; // ms
+        const duration = 1600;
 
         const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             
-            // Easing function: easeOutCubic
             const easeProgress = 1 - Math.pow(1 - progress, 3);
             const currentVal = Math.floor(easeProgress * target);
             
@@ -126,12 +125,87 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', triggerStatsAnimation, { passive: true });
-    // Trigger on load if already in viewport
     triggerStatsAnimation();
 
 
     // ==========================================
-    // 3. SUBTLE 3D CARD TILT MICRO-INTERACTION (60-120FPS)
+    // 3. GLIDING ACTIVE FILTER INDICATOR & ANIMATED FILTERING
+    // ==========================================
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const filterIndicator = document.getElementById('filterIndicator');
+    const galleryFilters = document.getElementById('galleryFilters');
+
+    const updateFilterIndicator = (activeBtn) => {
+        if (!activeBtn || !filterIndicator || !galleryFilters) return;
+        const filterRect = galleryFilters.getBoundingClientRect();
+        const btnRect = activeBtn.getBoundingClientRect();
+
+        const leftOffset = btnRect.left - filterRect.left + galleryFilters.scrollLeft;
+        const width = btnRect.width;
+
+        filterIndicator.style.transform = `translate3d(${leftOffset}px, 0, 0)`;
+        filterIndicator.style.width = `${width}px`;
+    };
+
+    // Filter Buttons Click Listener
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            const activeBtn = e.currentTarget;
+            activeBtn.classList.add('active');
+            updateFilterIndicator(activeBtn);
+
+            const filterValue = activeBtn.getAttribute('data-filter');
+
+            // Animated Filter Execution
+            let delayIndex = 0;
+            galleryItems.forEach(item => {
+                const matches = filterValue === 'all' || item.classList.contains(filterValue);
+                
+                if (matches) {
+                    item.classList.remove('hide');
+                    item.style.display = '';
+                    
+                    // Staggered smooth entrance
+                    const currentDelay = delayIndex * 60;
+                    delayIndex++;
+
+                    setTimeout(() => {
+                        window.requestAnimationFrame(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translate3d(0, 0, 0) scale(1)';
+                            item.style.filter = 'blur(0px)';
+                        });
+                    }, currentDelay);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translate3d(0, 15px, 0) scale(0.94)';
+                    item.style.filter = 'blur(4px)';
+                    setTimeout(() => {
+                        if (item.style.opacity === '0') {
+                            item.classList.add('hide');
+                        }
+                    }, 300);
+                }
+            });
+        });
+    });
+
+    // Initial Indicator Setup & Window Resize Listener
+    const activeBtn = document.querySelector('.filter-btn.active');
+    if (activeBtn) {
+        setTimeout(() => updateFilterIndicator(activeBtn), 120);
+    }
+
+    window.addEventListener('resize', () => {
+        const currentActive = document.querySelector('.filter-btn.active');
+        if (currentActive) updateFilterIndicator(currentActive);
+    }, { passive: true });
+
+
+    // ==========================================
+    // 4. SUBTLE 3D CARD TILT MICRO-INTERACTION (60-120FPS)
     // ==========================================
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
@@ -147,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                const rotateX = ((y - centerY) / centerY) * -6; // Max 6deg tilt
+                const rotateX = ((y - centerY) / centerY) * -6;
                 const rotateY = ((x - centerX) / centerX) * 6;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
@@ -161,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 4. SCROLL REVEAL EFFECT (Intersection Observer)
+    // 5. SCROLL REVEAL EFFECT (Intersection Observer)
     // ==========================================
     const revealElements = document.querySelectorAll('.scroll-reveal');
 
@@ -182,34 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         revealElements.forEach(el => el.classList.add('visible'));
     }
-
-
-    // ==========================================
-    // 5. DYNAMIC GALLERY FILTERING
-    // ==========================================
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            e.currentTarget.classList.add('active');
-
-            const filterValue = e.currentTarget.getAttribute('data-filter');
-
-            galleryItems.forEach(item => {
-                const matches = filterValue === 'all' || item.classList.contains(filterValue);
-                
-                if (matches) {
-                    item.classList.remove('hide');
-                    item.style.opacity = '1';
-                    item.style.transform = 'translate3d(0, 0, 0)';
-                } else {
-                    item.classList.add('hide');
-                }
-            });
-        });
-    });
 
 
     // ==========================================
