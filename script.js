@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section[id]');
 
     if (menuToggle && navMenu && header) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navMenu.classList.toggle('open');
             header.classList.toggle('menu-open');
         });
@@ -26,6 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 navMenu.classList.remove('open');
                 header.classList.remove('menu-open');
             });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('open');
+                header.classList.remove('menu-open');
+            }
         });
     }
 
