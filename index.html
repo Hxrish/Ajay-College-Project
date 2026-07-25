@@ -24,6 +24,7 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#client-login" class="nav-link btn-client-portal" id="clientPortalNavBtn">Client Access</a>
                 <a href="#contact" class="nav-link btn-inquire">Inquire</a>
             </nav>
 
@@ -641,7 +642,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 VH Studio. All Rights Reserved.</p>
+                <p>&copy; 2026 VH Studio. All Rights Reserved. • <a href="#admin-login" id="adminPortalFooterBtn" class="footer-admin-link">Admin Portal</a></p>
                 <button class="back-to-top" id="backToTop" aria-label="Back to top">
                     <span>BACK TO TOP</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
@@ -649,6 +650,251 @@
             </div>
         </div>
     </footer>
+
+    <!-- ═══ CLIENT LOGIN MODAL ═══ -->
+    <div class="portal-modal" id="clientLoginModal" role="dialog" aria-hidden="true">
+        <div class="portal-modal-overlay"></div>
+        <div class="portal-card">
+            <button class="portal-close" id="clientLoginClose">&times;</button>
+            <div class="portal-header">
+                <span class="portal-subtitle">CLIENT PORTAL</span>
+                <h2>Client Access</h2>
+                <p>Enter your private credentials to view your exclusive photo collection.</p>
+            </div>
+            <form id="clientLoginForm" class="portal-form">
+                <div class="form-group">
+                    <label for="clientUsernameInput">Client Username</label>
+                    <input type="text" id="clientUsernameInput" required placeholder="e.g. elena" autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="clientPasswordInput">Client Password</label>
+                    <input type="password" id="clientPasswordInput" required placeholder="••••••••" autocomplete="current-password">
+                </div>
+                <div class="portal-error" id="clientLoginError"></div>
+                <button type="submit" class="btn btn-primary btn-block">ACCESS MY GALLERY</button>
+            </form>
+            <div class="portal-hint">
+                <span>Demo Credentials:</span> Username: <strong>elena</strong> | Password: <strong>wedding2025</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ PRIVATE CLIENT GALLERY MODAL ═══ -->
+    <div class="portal-modal full-screen" id="clientGalleryModal" role="dialog" aria-hidden="true">
+        <div class="portal-modal-overlay"></div>
+        <div class="client-gallery-container">
+            <div class="client-gallery-header">
+                <div class="client-info-block">
+                    <span class="portal-subtitle">PRIVATE COLLECTION</span>
+                    <h1 id="clientGalleryName">Elena & Julian's Gallery</h1>
+                    <p id="clientGallerySubtitle">Napa Valley Luxury Wedding • October 2025</p>
+                </div>
+                <div class="client-header-actions">
+                    <button class="btn btn-secondary" id="clientLogoutBtn">LOG OUT</button>
+                </div>
+            </div>
+            <div class="client-gallery-grid" id="clientGalleryGrid">
+                <!-- Dynamically Populated by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ HIDDEN ADMIN LOGIN MODAL ═══ -->
+    <div class="portal-modal" id="adminLoginModal" role="dialog" aria-hidden="true">
+        <div class="portal-modal-overlay"></div>
+        <div class="portal-card gold-border">
+            <button class="portal-close" id="adminLoginClose">&times;</button>
+            <div class="portal-header">
+                <span class="portal-subtitle">EXECUTIVE CONTROL</span>
+                <h2>Admin Portal</h2>
+                <p>Authenticate to manage public portfolio & client private galleries.</p>
+            </div>
+            <form id="adminLoginForm" class="portal-form">
+                <div class="form-group">
+                    <label for="adminUsernameInput">Admin Username</label>
+                    <input type="text" id="adminUsernameInput" required placeholder="admin" autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="adminPasswordInput">Admin Password</label>
+                    <input type="password" id="adminPasswordInput" required placeholder="••••••••" autocomplete="current-password">
+                </div>
+                <div class="portal-error" id="adminLoginError"></div>
+                <button type="submit" class="btn btn-primary btn-block">SIGN IN TO DASHBOARD</button>
+            </form>
+            <div class="portal-hint">
+                <span>Default Admin Credentials:</span> Username: <strong>admin</strong> | Password: <strong>admin123</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ ADMIN CONTROL PANEL DASHBOARD MODAL ═══ -->
+    <div class="portal-modal full-screen" id="adminDashboardModal" role="dialog" aria-hidden="true">
+        <div class="portal-modal-overlay"></div>
+        <div class="admin-dashboard-container">
+            <div class="admin-dashboard-header">
+                <div class="admin-brand">
+                    <a href="#" class="logo">VH<span>STUDIO ADMIN</span></a>
+                    <span class="badge-status">STUDIO CONTROL CENTER</span>
+                </div>
+                <button class="btn btn-secondary" id="adminLogoutBtn">LOG OUT ADMIN</button>
+            </div>
+
+            <!-- Admin Navigation Tabs -->
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="public-manager">PUBLIC PORTFOLIO MANAGER</button>
+                <button class="admin-tab-btn" data-tab="client-manager">CLIENT GALLERIES & ACCOUNTS</button>
+                <button class="admin-tab-btn" data-tab="admin-settings">ADMIN SETTINGS</button>
+            </div>
+
+            <div class="admin-tab-content">
+                <!-- TAB 1: Public Portfolio Manager -->
+                <div class="tab-pane active" id="tab-public-manager">
+                    <div class="admin-section-grid">
+                        <!-- Form Pane -->
+                        <div class="admin-card">
+                            <h3>Add New Public Photo</h3>
+                            <p class="admin-card-desc">Publish a new photo directly to the live public website gallery.</p>
+                            <form id="addPublicPhotoForm" class="admin-form">
+                                <div class="form-group">
+                                    <label for="pubTitle">Photo Title</label>
+                                    <input type="text" id="pubTitle" required placeholder="e.g. Celestial Evening Vows">
+                                </div>
+                                <div class="form-row-two">
+                                    <div class="form-group">
+                                        <label for="pubCategory">Category</label>
+                                        <select id="pubCategory" required>
+                                            <option value="wedding">Weddings</option>
+                                            <option value="prewedding">Pre-Wedding</option>
+                                            <option value="reception">Reception</option>
+                                            <option value="events">Special Events</option>
+                                            <option value="details">Details</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pubLocation">Location</label>
+                                        <input type="text" id="pubLocation" required placeholder="e.g. Santorini, Greece">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pubImgUrl">Image Source (URL or Upload File)</label>
+                                    <input type="text" id="pubImgUrl" placeholder="assets/images/wedding_ceremony.png or paste image URL">
+                                    <input type="file" id="pubImgFile" accept="image/*" style="margin-top: 0.4rem;">
+                                </div>
+                                <div class="form-row-two">
+                                    <div class="form-group">
+                                        <label for="pubCamera">Camera Body</label>
+                                        <input type="text" id="pubCamera" placeholder="Canon EOS R5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pubLens">Lens Profile</label>
+                                        <input type="text" id="pubLens" placeholder="RF 85mm f/1.2L">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pubDesc">Description</label>
+                                    <textarea id="pubDesc" rows="3" placeholder="Brief story about the composition..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">PUBLISH TO WEBSITE</button>
+                            </form>
+                        </div>
+
+                        <!-- Current Public Photos List -->
+                        <div class="admin-card">
+                            <h3>Live Public Photos (<span id="publicPhotosCount">0</span>)</h3>
+                            <p class="admin-card-desc">Manage existing showcase photos displayed on your website.</p>
+                            <div class="admin-photo-list" id="adminPublicPhotosList">
+                                <!-- Populated dynamically by script.js -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Client Galleries & Accounts -->
+                <div class="tab-pane" id="tab-client-manager">
+                    <div class="admin-section-grid">
+                        <!-- Create Client Account Form -->
+                        <div class="admin-card">
+                            <h3>Create Client Private Account</h3>
+                            <p class="admin-card-desc">Set up dedicated login credentials for brides, grooms, or event clients.</p>
+                            <form id="createClientForm" class="admin-form">
+                                <div class="form-group">
+                                    <label for="newClientName">Client Full Name(s)</label>
+                                    <input type="text" id="newClientName" required placeholder="e.g. Sophia & Alexander">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newClientEvent">Event Title & Location</label>
+                                    <input type="text" id="newClientEvent" required placeholder="e.g. Royal Palace Reception • Vienna">
+                                </div>
+                                <div class="form-row-two">
+                                    <div class="form-group">
+                                        <label for="newClientUser">Assigned Username</label>
+                                        <input type="text" id="newClientUser" required placeholder="sophia2026">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newClientPass">Assigned Password</label>
+                                        <input type="text" id="newClientPass" required placeholder="secret123">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">CREATE CLIENT ACCOUNT</button>
+                            </form>
+
+                            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+                            <h3>Upload Photos to Client Album</h3>
+                            <p class="admin-card-desc">Add private photos to a selected client's private gallery.</p>
+                            <form id="addClientPhotoForm" class="admin-form">
+                                <div class="form-group">
+                                    <label for="selectClientAccount">Select Client Account</label>
+                                    <select id="selectClientAccount" required>
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="clientPhotoTitle">Photo Caption</label>
+                                    <input type="text" id="clientPhotoTitle" required placeholder="e.g. First Dance Under Chandeliers">
+                                </div>
+                                <div class="form-group">
+                                    <label for="clientPhotoUrl">Image URL or Upload</label>
+                                    <input type="text" id="clientPhotoUrl" placeholder="Paste image URL or choose file below">
+                                    <input type="file" id="clientPhotoFile" accept="image/*" style="margin-top: 0.4rem;">
+                                </div>
+                                <button type="submit" class="btn btn-secondary">ADD TO CLIENT ALBUM</button>
+                            </form>
+                        </div>
+
+                        <!-- Existing Client Accounts & Gallery Lists -->
+                        <div class="admin-card">
+                            <h3>Active Client Accounts (<span id="clientAccountsCount">0</span>)</h3>
+                            <p class="admin-card-desc">View existing clients, view passwords, manage photos, or remove accounts.</p>
+                            <div class="admin-client-list" id="adminClientAccountsList">
+                                <!-- Populated dynamically by script.js -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Admin Settings -->
+                <div class="tab-pane" id="tab-admin-settings">
+                    <div class="admin-card" style="max-width: 600px;">
+                        <h3>Security Credentials</h3>
+                        <p class="admin-card-desc">Change master administrator username and password for this portal.</p>
+                        <form id="changeAdminCredsForm" class="admin-form">
+                            <div class="form-group">
+                                <label for="updateAdminUser">Master Username</label>
+                                <input type="text" id="updateAdminUser" required placeholder="admin">
+                            </div>
+                            <div class="form-group">
+                                <label for="updateAdminPass">Master Password</label>
+                                <input type="password" id="updateAdminPass" required placeholder="New Password">
+                            </div>
+                            <div class="portal-error" id="updateAdminStatus"></div>
+                            <button type="submit" class="btn btn-primary">UPDATE CREDENTIALS</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
