@@ -1,5 +1,5 @@
 /**
- * Ajay Studio - Core Interactive Behaviors
+ * VH Studio - Core Interactive Behaviors
  * Includes 60-120fps Gliding Active Filter Indicator, Card Filtering Animations,
  * RequestAnimationFrame Count-up, 3D Tilt, Scroll-Spy Navigation & Lightbox.
  */
