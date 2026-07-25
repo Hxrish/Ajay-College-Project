@@ -381,11 +381,56 @@ main {
     border-radius: 2px;
 }
 
-/* 6. HERO SECTION & VINTAGE SCROLL INDICATOR */
+/* 6. HERO SECTION & FULL-BLEED CINEMATIC BACKGROUND */
 .hero {
-    padding: 6rem 0 7rem 0;
+    min-height: 100vh;
+    padding: 7rem 0 6rem 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale3d(1.05, 1.05, 1);
+    animation: heroZoom 24s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes heroZoom {
+    0% { transform: scale3d(1.05, 1.05, 1); }
+    100% { transform: scale3d(1.14, 1.14, 1); }
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(10, 9, 8, 0.8) 0%,
+        rgba(10, 9, 8, 0.45) 40%,
+        rgba(10, 9, 8, 0.75) 75%,
+        rgba(10, 9, 8, 0.98) 100%
+    );
+    z-index: 1;
+}
+
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(10, 9, 8, 0.8) 100%);
+    z-index: 1;
 }
 
 .hero-glow-bg {
@@ -394,9 +439,9 @@ main {
     left: 20%;
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(10, 9, 8, 0) 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.14) 0%, rgba(10, 9, 8, 0) 70%);
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
 }
 
 .hero-container {
@@ -408,7 +453,7 @@ main {
     gap: 4.5rem;
     align-items: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero-tag {
@@ -580,6 +625,8 @@ main {
 
 /* Scroll Indicator Animation */
 .hero-scroll-indicator {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
